@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private Company Database - Beta</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@700&family=Roboto+Slab:wght@400;700&display=swap');
+        
+        :root {
+            --primary-color: #ffd700;
+            --text-color: #e0e0e0;
+            --bg-color: #0f0f1a;
+            --card-bg-color: rgba(30, 30, 50, 0.8);
+        }
+        
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--bg-color) 0%, #1a1a2e 100%);
+            color: var(--text-color);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+            letter-spacing: -1px;
+        }
+        .beta-tag {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--primary-color);
+            color: var(--bg-color);
+            padding: 0.2rem 0.5rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+        .content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-grow: 1;
+        }
+        .info {
+            flex: 1;
+            padding-right: 2rem;
+        }
+        .signup {
+            flex: 1;
+            background-color: var(--card-bg-color);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        h2 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            font-weight: 700;
+        }
+        p {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        input[type="email"] {
+            font-family: 'Poppins', sans-serif;
+            padding: 0.8rem;
+            font-size: 1rem;
+            border: 1px solid #333;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            background-color: rgba(42, 42, 72, 0.8);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+        input[type="email"]:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2);
+        }
+        input[type="email"]::placeholder {
+            color: #888;
+        }
+        button {
+            font-family: 'Roboto Slab', serif;
+            padding: 0.8rem;
+            font-size: 1rem;
+            background-color: var(--primary-color);
+            color: var(--bg-color);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+        button:hover {
+            background-color: #ffea00;
+        }
+        button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+        button:focus:not(:active)::after {
+            animation: ripple 1s ease-out;
+        }
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 1;
+            }
+            20% {
+                transform: scale(25, 25);
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: scale(40, 40);
+            }
+        }
+        .feature-list {
+            margin-top: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        .feature-item {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            .info, .signup {
+                padding: 1rem;
+                width: 100%;
+            }
+        }
+        
+        /* Improved animated background styles */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .network-particle {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+        }
+        .network-line {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.05);
+            transform-origin: left center;
+        }
+    </style>
+</head>
+<body>
+    <div class="background" id="networkBackground"></div>
+    <div class="container">
+        <header>
+            <h1>Private Company Database <span class="beta-tag">BETA</span></h1>
+        </header>
+        <div class="content">
+            <div class="info">
+                <h2>Unlock the Power of Private Company Data</h2>
+                <p>We're building a comprehensive database that provides unparalleled insights into private companies. Get early access and be at the forefront of market intelligence.</p>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <div class="feature-icon">📊</div>
+                        <p>Comprehensive Analytics</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🔒</div>
+                        <p>Secure Data</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🚀</div>
+                        <p>Real-time Updates</p>
+                    </div>
+                </div>
+            </div>
+            <div class="signup">
+                <h2>Join the Beta</h2>
+                <p>Sign up now to receive exclusive updates and be among the first to experience our groundbreaking platform.</p>
+                <form id="email-form">
+                    <input type="email" id="email" placeholder="Enter your email address" required>
+                    <button type="submit">Get Early Access</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Improved network background animation
+        const networkBackground = document.getElementById('networkBackground');
+        const particleCount = 50;
+        const lineCount = 50;
+        const particles = [];
+
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.classList.add('network-particle');
+            const size = Math.random() * 5 + 2;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.top = `${Math.random() * 100}%`;
+            networkBackground.appendChild(particle);
+            particles.push({
+                element: particle,
+                x: parseFloat(particle.style.left),
+                y: parseFloat(particle.style.top),
+                vx: (Math.random() - 0.5) * 0.2,
+                vy: (Math.random() - 0.5) * 0.2
+            });
+        }
+
+        function createLine() {
+            const line = document.createElement('div');
+            line.classList.add('network-line');
+            networkBackground.appendChild(line);
+            return line;
+        }
+
+        function updateParticles() {
+            particles.forEach(particle => {
+                particle.x += particle.vx;
+                particle.y += particle.vy;
+
+                if (particle.x < 0 || particle.x > 100) particle.vx *= -1;
+                if (particle.y < 0 || particle.y > 100) particle.vy *= -1;
+
+                particle.element.style.left = `${particle.x}%`;
+                particle.element.style.top = `${particle.y}%`;
+            });
+        }
+
+        function updateLines() {
+            const lines = networkBackground.querySelectorAll('.network-line');
+            lines.forEach((line, index) => {
+                const p1 = particles[index % particles.length];
+                const p2 = particles[(index + 1) % particles.length];
+                
+                const dx = p2.x - p1.x;
+                const dy = p2.y - p1.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+
+                line.style.width = `${distance}%`;
+                line.style.left = `${p1.x}%`;
+                line.style.top = `${p1.y}%`;
+                line.style.transform = `rotate(${angle}deg)`;
+                line.style.opacity = Math.max(0, 0.5 - distance * 0.005);
+            });
+        }
+
+        for (let i = 0; i < particleCount; i++) {
+            createParticle();
+        }
+
+        for (let i = 0; i < lineCount; i++) {
+            createLine();
+        }
+
+        function animate() {
+            updateParticles();
+            updateLines();
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        // Form submission handling
+        document.getElementById('email-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var email = document.getElementById('email').value;
+            alert('Thank you! ' + email + ' has been added to our beta list.');
+            // Here you would typically send the email to your server
+        });
+    </script>
+</body>
+</html>
