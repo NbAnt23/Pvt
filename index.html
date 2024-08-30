@@ -310,8 +310,8 @@
                 <h2>Join the Beta</h2>
                 <p>Sign up now to receive exclusive updates and be among the first to experience our groundbreaking
                     platform.</p>
-                <form id="email-form">
-                    <input type="email" id="email" placeholder="" required>
+                <form id="email-form" action="https://formspree.io/f/xzzpoonb" method="POST">
+                    <input type="email" id="email" name="email" placeholder="" required>
                     <button type="submit">Get Early Access</button>
                 </form>
             </div>
@@ -421,14 +421,6 @@
         }
 
         typePlaceholder();
-
-        // Form submission handling
-        document.getElementById('email-form').addEventListener('submit', function (e) {
-            e.preventDefault();
-            var email = document.getElementById('email').value;
-            alert('Thank you! ' + email + ' has been added to our beta list.');
-            // Here you would typically send the email to your server
-        });
     </script>
 </body>
 
