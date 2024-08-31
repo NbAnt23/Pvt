@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PvtRealm - Company Search</title>
+    <link rel="stylesheet" href="company-list.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="company-list.js" defer></script>
+</head>
+
+<body>
+    <div id="networkBackground" class="background"></div>
+
+    <div class="container">
+        <header>
+            <h1>PvtRealm <span class="beta-tag">BETA</span></h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#" class="active">Company Search</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main class="content" role="main">
+            <section id="company-search" class="section search-section">
+                <h2>Discover Private Company Data</h2>
+                <p>Access comprehensive analytics and insights for private companies.</p>
+
+                <div class="search-container">
+                    <form id="search-form" class="search-form">
+                        <div class="search-input-container">
+                            <input type="text" id="company-search" placeholder="Enter company name..."
+                                autocomplete="off">
+                        </div>
+                        <button type="submit">SEARCH</button>
+                    </form>
+                    <ul id="company-list"></ul>
+                </div>
+
+                <div id="search-results" class="search-results"></div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 PvtRealm. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+
+</html>
