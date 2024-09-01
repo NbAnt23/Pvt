@@ -160,14 +160,39 @@ function initCompanySearch() {
         }
     }
 
+    function showLockedPreview(company) {
+        const previewContainer = document.createElement('div');
+        previewContainer.classList.add('locked-preview');
+        
+        const lockIcon = document.createElement('i');
+        lockIcon.classList.add('fas', 'fa-lock');
+        
+        const blurredData = document.createElement('div');
+        blurredData.classList.add('blurred-data');
+        blurredData.innerHTML = `
+            <div class="blurred-line"></div>
+            <div class="blurred-line"></div>
+            <div class="blurred-line"></div>
+        `;
+        
+        const message = document.createElement('p');
+        message.textContent = `Detailed financial data for ${company} is locked. Subscribe to access.`;
+        
+        previewContainer.appendChild(lockIcon);
+        previewContainer.appendChild(blurredData);
+        previewContainer.appendChild(message);
+        
+        searchResults.innerHTML = '';
+        searchResults.appendChild(previewContainer);
+    }
+
     searchForm.addEventListener('submit', function(e) {
         e.preventDefault();
         const company = searchInput.value;
         if (company && typeof company === 'string') {
             const trimmedCompany = company.trim();
             if (trimmedCompany !== '') {
-                searchResults.innerHTML = `<p>Showing results for: ${trimmedCompany}</p>`;
-                // Here you would typically fetch and display actual company data
+                showLockedPreview(trimmedCompany);
             } else {
                 searchResults.innerHTML = '<p>Please enter a valid company name.</p>';
             }
