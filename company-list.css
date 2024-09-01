@@ -226,6 +226,38 @@ footer {
   color: var(--text-color);
 }
 
+/* New styles for locked preview */
+.locked-preview {
+  background-color: var(--card-bg-color);
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.locked-preview i {
+  font-size: 48px;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+}
+
+.blurred-data {
+  margin: 20px 0;
+}
+
+.blurred-line {
+  height: 20px;
+  background-color: rgba(255, 255, 255, 0.1);
+  margin: 10px 0;
+  border-radius: 4px;
+  filter: blur(4px);
+}
+
+.locked-preview p {
+  font-size: 1.1rem;
+  color: var(--text-color);
+}
+
 @media (max-width: 768px) {
   .search-form {
     flex-direction: column;
